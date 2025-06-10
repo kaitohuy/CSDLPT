@@ -27,7 +27,7 @@ def test_load_time():
     clean_tables(conn)
     
     start_time = time.time()
-    MyAssignment.LoadRatings('ratings', 'ratings.dat', conn)
+    MyAssignment.LoadRatings('ratings', './data/ratings.dat', conn)
     load_time = time.time() - start_time
     
     print(f"Thời gian tải dữ liệu: {load_time:.6f} giây")
@@ -39,7 +39,7 @@ def test_partition_time():
     print("\n2. Đo thời gian phân mảnh...")
     conn = get_connection()
     clean_tables(conn)
-    MyAssignment.LoadRatings('ratings', 'ratings.dat', conn)
+    MyAssignment.LoadRatings('ratings', './data/ratings.dat', conn)
     
     # Phân mảnh theo khoảng
     start_time = time.time()
@@ -49,7 +49,7 @@ def test_partition_time():
     
     # Dọn dẹp và chuẩn bị cho phân mảnh vòng tròn
     clean_tables(conn)
-    MyAssignment.LoadRatings('ratings', 'ratings.dat', conn)
+    MyAssignment.LoadRatings('ratings', './data/ratings.dat', conn)
     
     # Phân mảnh vòng tròn
     start_time = time.time()
@@ -67,7 +67,7 @@ def test_insert_time():
     
     # Chuẩn bị môi trường cho phân mảnh theo khoảng
     clean_tables(conn)
-    MyAssignment.LoadRatings('ratings', 'ratings.dat', conn)
+    MyAssignment.LoadRatings('ratings', './data/ratings.dat', conn)
     MyAssignment.Range_Partition('ratings', 5, conn)
     
     # Đo thời gian chèn theo khoảng
@@ -78,7 +78,7 @@ def test_insert_time():
     
     # Chuẩn bị môi trường cho phân mảnh vòng tròn
     clean_tables(conn)
-    MyAssignment.LoadRatings('ratings', 'ratings.dat', conn)
+    MyAssignment.LoadRatings('ratings', './data/ratings.dat', conn)
     MyAssignment.RoundRobin_Partition('ratings', 5, conn)
     
     # Đo thời gian chèn vòng tròn
